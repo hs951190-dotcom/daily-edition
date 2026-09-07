@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daily Edition — Independent Magazine Shop & Specialty Coffee House</title>
-  <meta name="description" content="Daily Edition is an upscale independent magazine bookstore and specialty coffee house featuring curated global print culture, architectural monographs, and torched marshmallow lattes.">
+  <title>Daily Edition — Independent Magazine Archive & Specialty Coffee Salon</title>
+  <meta name="description" content="Daily Edition is an upscale Scandinavian-Japanese indie bookstore, design magazine shop, and specialty coffee house featuring torched marshmallow lattes and fresh raspberry pastries.">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -14,13 +14,14 @@
       theme: {
         extend: {
           colors: {
-            editiongreen: { 50: '#f2f6f3', 500: '#4A5D4E', 600: '#3d4d41', 700: '#303d34' },
-            editionamber: { 500: '#D48C46', 600: '#b87535' },
-            editionberry: { 500: '#8B263E', 600: '#701e31' }
+            editiongreen: { 50: '#f2f6f3', 100: '#e1e9e3', 500: '#3D5242', 600: '#304135', 700: '#233027' },
+            editionamber: { 500: '#C9833E', 600: '#b06f30' },
+            editionberry: { 500: '#8C253E', 600: '#701c31' }
           },
           fontFamily: {
             editorial: ['Playfair Display', 'Fraunces', 'serif'],
-            sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif']
+            sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+            script: ['Caveat', 'cursive']
           }
         }
       }
@@ -30,27 +31,27 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
     :root {
-      --bg: #F8F9F8;
+      --bg: #F5F6F4;
       --surface: #FFFFFF;
-      --border: #DCE2DD;
-      --primary: #4A5D4E;
-      --text: #121614;
-      --text-muted: #6B756E;
+      --border: #DEE3DE;
+      --primary: #3D5242;
+      --text: #151816;
+      --text-muted: #657067;
     }
     html.dark {
-      --bg: #090C0A;
-      --surface: #121714;
-      --border: #222E27;
-      --primary: #76A07E;
-      --text: #F4F7F5;
-      --text-muted: #9BA69E;
+      --bg: #0B0E0C;
+      --surface: #131915;
+      --border: #232D26;
+      --primary: #729B78;
+      --text: #F5F7F5;
+      --text-muted: #9BA89E;
     }
     body {
       background-color: var(--bg);
@@ -58,220 +59,494 @@
       font-family: 'Plus Jakarta Sans', sans-serif;
       transition: background-color 0.4s ease, color 0.4s ease;
     }
+    section { scroll-margin-top: 6rem; }
     .font-editorial { font-family: 'Playfair Display', 'Fraunces', serif; }
-    
-    /* Custom Editorial Scrollbar & Selections */
     ::selection { background: var(--primary); color: white; }
-    
-    /* Editorial Line Clamp & Spacing */
     .editorial-border { border-color: var(--border); }
   </style>
 </head>
 <body class="antialiased">
 
-  <!-- ============ EDITORIAL FLOATING HEADER ============ -->
-  <header class="fixed top-0 left-0 right-0 z-50 bg-[var(--bg)]/80 backdrop-blur-md border-b editorial-border transition-colors">
+  <!-- ============ EDITORIAL MASTHEAD NAV ============ -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-[var(--bg)]/90 backdrop-blur-md border-b editorial-border transition-colors">
     <div class="max-w-7xl mx-auto px-8 h-24 flex items-center justify-between">
-      <!-- Minimalist Typographic Brand Mark -->
-      <a href="#" class="flex flex-col">
-        <span class="font-editorial font-normal text-2xl tracking-[0.18em] uppercase leading-none">Daily Edition</span>
-        <span class="text-[8px] uppercase tracking-[0.35em] text-[var(--text-muted)] mt-1.5 font-medium">Print Culture & Espresso • Vol. IV</span>
+      <a href="#" class="flex flex-col group">
+        <span class="font-editorial font-normal text-2xl tracking-[0.18em] uppercase leading-none group-hover:text-[var(--primary)] transition-colors">Daily Edition</span>
+        <div class="flex items-center gap-2 mt-1">
+          <span class="text-[8px] uppercase tracking-[0.3em] text-[var(--text-muted)] font-medium">Vol. IV • Print & Espresso</span>
+          <span id="liveDot" class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+        </div>
       </a>
 
-      <!-- Editorial Nav Links -->
-      <nav class="hidden md:flex items-center gap-10 text-xs font-medium uppercase tracking-[0.2em] text-[var(--text-muted)]">
-        <a href="#catalogue" class="hover:text-[var(--primary)] transition-colors">01. Catalogue</a>
-        <a href="#curation" class="hover:text-[var(--primary)] transition-colors">02. Café & Bar</a>
-        <a href="#space" class="hover:text-[var(--primary)] transition-colors">03. The Space</a>
-        <a href="#colophon" class="hover:text-[var(--primary)] transition-colors">04. Colophon</a>
+      <nav class="hidden md:flex items-center gap-8 text-[11px] font-medium uppercase tracking-[0.25em] text-[var(--text-muted)]">
+        <a href="#catalogue" class="hover:text-[var(--primary)] transition-colors">01. Periodicals</a>
+        <a href="#menu" class="hover:text-[var(--primary)] transition-colors">02. Espresso Bar</a>
+        <a href="#salon" class="hover:text-[var(--primary)] transition-colors">03. Reading Room</a>
+        <a href="#archive" class="hover:text-[var(--primary)] transition-colors">04. Visual Archive</a>
+        <a href="#visit" class="hover:text-[var(--primary)] transition-colors">05. Location</a>
       </nav>
 
-      <!-- Utility Actions -->
-      <div class="flex items-center gap-5">
+      <div class="flex items-center gap-4">
         <button id="themeToggle" aria-label="Toggle Theme" class="w-9 h-9 rounded-full border editorial-border flex items-center justify-center hover:bg-[var(--primary)] hover:text-white transition-all">
           <i data-lucide="sun" class="w-3.5 h-3.5 dark:hidden"></i>
           <i data-lucide="moon" class="w-3.5 h-3.5 hidden dark:block"></i>
         </button>
-        <a href="#catalogue" class="hidden sm:inline-block text-[10px] uppercase font-bold tracking-[0.25em] bg-[var(--text)] text-[var(--bg)] px-6 py-3 rounded-full hover:bg-[var(--primary)] transition-colors">
-          Request Issue
-        </a>
+        <button id="openCartDrawer" class="relative text-[10px] uppercase font-bold tracking-[0.25em] bg-[var(--text)] text-[var(--bg)] px-6 py-3 rounded-full hover:bg-[var(--primary)] transition-colors flex items-center gap-2">
+          <span>Bag</span>
+          <span id="bagCount" class="w-4 h-4 rounded-full bg-[var(--primary)] text-white text-[9px] flex items-center justify-center">0</span>
+        </button>
       </div>
     </div>
   </header>
 
-  <!-- ============ EDITORIAL HERO (Asymmetric Magazine Spread) ============ -->
-  <section class="relative pt-40 pb-24 md:pt-52 md:pb-36 border-b editorial-border">
+  <!-- ============ COVER STORY HERO ============ -->
+  <section class="relative pt-44 pb-24 md:pt-56 md:pb-36 border-b editorial-border">
     <div class="max-w-7xl mx-auto px-8 grid lg:grid-cols-12 gap-12 items-end">
-      
-      <!-- Left Column: Big Editorial Statement -->
       <div class="lg:col-span-7">
         <span class="text-[10px] uppercase tracking-[0.3em] font-bold text-editiongreen-600 dark:text-editiongreen-500 block mb-4">
-          Independent Bookstore & Slow Coffee House
+          Independent Bookstore & Slow Coffee Salon
         </span>
         <h1 class="font-editorial font-normal text-5xl sm:text-7xl lg:text-8xl leading-[0.95] tracking-tight mb-8">
-          The Art of <br><span class="italic font-light">Tactile Print</span> & Slow Brew.
+          The Architecture of <br><span class="italic font-light">Slow Mornings</span> & Torched Sugar.
         </h1>
-        <p class="text-[var(--text-muted)] text-sm sm:text-base leading-relaxed max-w-lg font-light">
-          A physical sanctuary dedicated to independent magazines, global art monographs, architecture journals, and artisanal espresso topped with torched marshmallows.
+        <p class="text-[var(--text-muted)] text-sm sm:text-base leading-relaxed max-w-lg font-light mb-8">
+          A physical sanctuary for independent worldwide periodicals, architectural monographs, flaky raspberry pastries, and artisanal espresso topped with torched marshmallows.
         </p>
-      </div>
-
-      <!-- Right Column: Asymmetric Featured Visual Offset -->
-      <div class="lg:col-span-5 flex flex-col items-end">
-        <div class="w-full max-w-md rounded-2xl overflow-hidden border editorial-border bg-surface p-3 shadow-sm">
-          <img src="./images/green-grid-bookshelf-wall.jpg" onerror="this.src='https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=900&auto=format&fit=crop&q=80'" alt="Sage Green Bookshelf Wall" class="w-full h-[380px] object-cover rounded-xl grayscale hover:grayscale-0 transition-all duration-700">
-          <div class="pt-4 px-2 flex justify-between items-center text-xs font-mono uppercase tracking-widest text-[var(--text-muted)]">
-            <span>[Plate 01] Shelf & Grid</span>
-            <span>Est. 2024</span>
-          </div>
+        <div class="flex flex-wrap gap-4">
+          <a href="#catalogue" class="text-[11px] uppercase font-bold tracking-[0.25em] bg-[var(--primary)] text-white px-8 py-4 rounded-full hover:opacity-90 transition-opacity">
+            Browse Magazine Index
+          </a>
+          <a href="#menu" class="text-[11px] uppercase font-bold tracking-[0.25em] border editorial-border px-8 py-4 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+            Order at the Marble Bar
+          </a>
         </div>
       </div>
 
+      <div class="lg:col-span-5 flex flex-col items-end">
+        <div class="w-full max-w-md rounded-2xl overflow-hidden border editorial-border bg-surface p-3 shadow-sm group cursor-pointer" onclick="openLightbox('./images/torched-marshmallow-latte.jpg', 'Torched Marshmallow Latte', 'Specialty latte with wood-skewered fire-torched marshmallows.')">
+          <img src="./images/torched-marshmallow-latte.jpg" onerror="this.src='https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=900&auto=format&fit=crop&q=80'" alt="Torched Marshmallow Latte" class="w-full h-[360px] object-cover rounded-xl group-hover:scale-105 transition-transform duration-700">
+          <div class="pt-4 px-2 flex justify-between items-center text-xs font-mono uppercase tracking-widest text-[var(--text-muted)]">
+            <span>[Plate 01] Signature Pour</span>
+            <span class="text-[var(--primary)] font-bold">$6.50</span>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ============ FEATURED CATALOGUE (Magazine Grid) ============ -->
+  <!-- ============ SECTION 01: PERIODICAL ARCHIVE ============ -->
   <section id="catalogue" class="py-28 border-b editorial-border">
     <div class="max-w-7xl mx-auto px-8">
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
         <div>
           <span class="text-[10px] uppercase tracking-[0.3em] font-bold text-[var(--text-muted)] block mb-2">Section 01</span>
-          <h2 class="font-editorial font-normal text-4xl sm:text-5xl">Curated Print Catalogue</h2>
+          <h2 class="font-editorial font-normal text-4xl sm:text-5xl">Curated Print Archive</h2>
         </div>
         <p class="text-xs uppercase tracking-widest text-[var(--text-muted)] max-w-xs">
           Global independent publications covering design, contemporary culture, and visual arts.
         </p>
       </div>
 
-      <!-- Editorial 3-Column Magazine Spread -->
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="group cursor-pointer">
-          <div class="aspect-[3/4] rounded-xl overflow-hidden border editorial-border mb-4 bg-surface">
-            <img src="./images/magazine-wall-close-up.jpg" onerror="this.src='https://images.unsplash.com/photo-1544717305-2782549b5136?w=900&auto=format&fit=crop&q=80'" alt="Monocle & Kinfolk" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+      <!-- Magazine Grid -->
+      <div class="grid md:grid-cols-4 gap-6">
+        <div onclick="openMagModal('Kinfolk & Monocle', '24.00', 'Slow lifestyle, independent journalism, architecture, and thoughtful global living.', './images/magazine-wall-close-up.jpg')" class="group cursor-pointer bg-surface border editorial-border rounded-2xl p-4 flex flex-col justify-between hover:border-[var(--primary)] transition-all">
+          <div class="aspect-[3/4] rounded-xl overflow-hidden mb-4 bg-black/5">
+            <img src="./images/magazine-wall-close-up.jpg" onerror="this.src='https://images.unsplash.com/photo-1544717305-2782549b5136?w=900&auto=format&fit=crop&q=80'" alt="Kinfolk" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
           </div>
-          <div class="flex justify-between items-start">
-            <div>
-              <h3 class="font-editorial text-xl font-normal">Kinfolk & Monocle</h3>
-              <p class="text-[var(--text-muted)] text-xs mt-1">Slow lifestyle & global affairs quarterly.</p>
+          <div>
+            <span class="text-[9px] uppercase tracking-widest text-editiongreen-600 font-bold block mb-1">Culture & Living</span>
+            <h3 class="font-editorial text-xl font-normal">Kinfolk & Monocle</h3>
+            <div class="flex justify-between items-center mt-4 pt-3 border-t editorial-border font-mono text-xs font-bold">
+              <span>$24.00</span>
+              <span class="text-[10px] uppercase tracking-wider text-[var(--primary)] group-hover:underline">Quick View →</span>
             </div>
-            <span class="font-mono text-xs font-bold">$24.00</span>
           </div>
         </div>
 
-        <div class="group cursor-pointer">
-          <div class="aspect-[3/4] rounded-xl overflow-hidden border editorial-border mb-4 bg-surface">
-            <img src="./images/green-grid-bookshelf-wall.jpg" onerror="this.src='https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=900&auto=format&fit=crop&q=80'" alt="Luncheon & Numero" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        <div onclick="openMagModal('Luncheon & Numero', '22.00', 'Conversations with artists, avant-garde fashion editorials, and stunning large-format print layouts.', './images/green-grid-bookshelf-wall.jpg')" class="group cursor-pointer bg-surface border editorial-border rounded-2xl p-4 flex flex-col justify-between hover:border-[var(--primary)] transition-all">
+          <div class="aspect-[3/4] rounded-xl overflow-hidden mb-4 bg-black/5">
+            <img src="./images/green-grid-bookshelf-wall.jpg" onerror="this.src='https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=900&auto=format&fit=crop&q=80'" alt="Luncheon" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
           </div>
-          <div class="flex justify-between items-start">
-            <div>
-              <h3 class="font-editorial text-xl font-normal">Luncheon & Numero</h3>
-              <p class="text-[var(--text-muted)] text-xs mt-1">Avant-garde fashion & art conversations.</p>
+          <div>
+            <span class="text-[9px] uppercase tracking-widest text-editionberry-500 font-bold block mb-1">Art & Fashion</span>
+            <h3 class="font-editorial text-xl font-normal">Luncheon & Numero</h3>
+            <div class="flex justify-between items-center mt-4 pt-3 border-t editorial-border font-mono text-xs font-bold">
+              <span>$22.00</span>
+              <span class="text-[10px] uppercase tracking-wider text-[var(--primary)] group-hover:underline">Quick View →</span>
             </div>
-            <span class="font-mono text-xs font-bold">$22.00</span>
           </div>
         </div>
 
-        <div class="group cursor-pointer">
-          <div class="aspect-[3/4] rounded-xl overflow-hidden border editorial-border mb-4 bg-surface">
-            <img src="./images/daily-edition-storefront-window.jpg" onerror="this.src='https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=900&auto=format&fit=crop&q=80'" alt="Openhouse & Ursula" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        <div onclick="openMagModal('Openhouse & Ursula', '20.00', 'Creative homes, interior architecture, artist studios, and intimate cultural spaces.', './images/daily-edition-storefront-window.jpg')" class="group cursor-pointer bg-surface border editorial-border rounded-2xl p-4 flex flex-col justify-between hover:border-[var(--primary)] transition-all">
+          <div class="aspect-[3/4] rounded-xl overflow-hidden mb-4 bg-black/5">
+            <img src="./images/daily-edition-storefront-window.jpg" onerror="this.src='https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=900&auto=format&fit=crop&q=80'" alt="Openhouse" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
           </div>
-          <div class="flex justify-between items-start">
-            <div>
-              <h3 class="font-editorial text-xl font-normal">Openhouse & Ursula</h3>
-              <p class="text-[var(--text-muted)] text-xs mt-1">Creative homes, interiors & architecture.</p>
+          <div>
+            <span class="text-[9px] uppercase tracking-widest text-editionamber-500 font-bold block mb-1">Architecture</span>
+            <h3 class="font-editorial text-xl font-normal">Openhouse & Ursula</h3>
+            <div class="flex justify-between items-center mt-4 pt-3 border-t editorial-border font-mono text-xs font-bold">
+              <span>$20.00</span>
+              <span class="text-[10px] uppercase tracking-wider text-[var(--primary)] group-hover:underline">Quick View →</span>
             </div>
-            <span class="font-mono text-xs font-bold">$20.00</span>
+          </div>
+        </div>
+
+        <div onclick="openMagModal('Emergence & Dazed', '22.00', 'Ecology, counter-culture photography, and deep-dive essays on modern aesthetics.', './images/ceiling-grid-pendant-lights.jpg')" class="group cursor-pointer bg-surface border editorial-border rounded-2xl p-4 flex flex-col justify-between hover:border-[var(--primary)] transition-all">
+          <div class="aspect-[3/4] rounded-xl overflow-hidden mb-4 bg-black/5">
+            <img src="./images/ceiling-grid-pendant-lights.jpg" onerror="this.src='https://images.unsplash.com/photo-1512820790803-83ca734da794?w=900&auto=format&fit=crop&q=80'" alt="Emergence" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div>
+            <span class="text-[9px] uppercase tracking-widest text-[var(--text-muted)] font-bold block mb-1">Ecology & Media</span>
+            <h3 class="font-editorial text-xl font-normal">Emergence & Dazed</h3>
+            <div class="flex justify-between items-center mt-4 pt-3 border-t editorial-border font-mono text-xs font-bold">
+              <span>$22.00</span>
+              <span class="text-[10px] uppercase tracking-wider text-[var(--primary)] group-hover:underline">Quick View →</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ CAFÉ & BAR MENU (Minimalist Typographic Layout) ============ -->
-  <section id="curation" class="py-28 border-b editorial-border">
-    <div class="max-w-7xl mx-auto px-8 grid lg:grid-cols-12 gap-16 items-center">
-      <div class="lg:col-span-5">
-        <span class="text-[10px] uppercase tracking-[0.3em] font-bold text-[var(--text-muted)] block mb-2">Section 02</span>
-        <h2 class="font-editorial font-normal text-4xl sm:text-5xl mb-6">The Coffee & Pastry Bar</h2>
-        <p class="text-[var(--text-muted)] text-sm leading-relaxed mb-8 font-light">
-          Precision-pulled espresso shots, ceremonial Uji matcha, and our signature drink: a steaming latte crowned with hand-torched marshmallows on a wooden skewer.
+  <!-- ============ SECTION 02: ESPRESSO & PASTRY BAR ============ -->
+  <section id="menu" class="py-28 border-b editorial-border">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div>
+          <span class="text-[10px] uppercase tracking-[0.3em] font-bold text-[var(--text-muted)] block mb-2">Section 02</span>
+          <h2 class="font-editorial font-normal text-4xl sm:text-5xl">The Espresso & Pastry Bar</h2>
+        </div>
+        <p class="text-xs uppercase tracking-widest text-[var(--text-muted)] max-w-xs">
+          Hand-pulled espresso, ceremonial matcha, and flaky seasonal pastries.
         </p>
-        <div class="space-y-6">
-          <div class="flex justify-between items-baseline border-b editorial-border pb-3">
-            <div>
-              <h4 class="font-editorial text-lg">Torched Marshmallow Latte</h4>
-              <p class="text-xs text-[var(--text-muted)] mt-0.5">Espresso, steamed oat milk & torched marshmallows</p>
-            </div>
-            <span class="font-mono text-sm font-bold">$6.50</span>
-          </div>
-          <div class="flex justify-between items-baseline border-b editorial-border pb-3">
-            <div>
-              <h4 class="font-editorial text-lg">Raspberry Compote Puff Danish</h4>
-              <p class="text-xs text-[var(--text-muted)] mt-0.5">Flaky pastry dusted with powdered sugar</p>
-            </div>
-            <span class="font-mono text-sm font-bold">$4.75</span>
-          </div>
-          <div class="flex justify-between items-baseline border-b editorial-border pb-3">
-            <div>
-              <h4 class="font-editorial text-lg">Ceremonial Grade Matcha Latte</h4>
-              <p class="text-xs text-[var(--text-muted)] mt-0.5">Vibrant green tea whisked smooth</p>
-            </div>
-            <span class="font-mono text-sm font-bold">$6.00</span>
-          </div>
-        </div>
       </div>
 
-      <!-- Right Column Visual: Torched Marshmallow Latte photo -->
-      <div class="lg:col-span-7 grid sm:grid-cols-2 gap-4">
-        <div class="rounded-2xl overflow-hidden border editorial-border bg-surface p-2">
-          <img src="./images/torched-marshmallow-latte.jpg" onerror="this.src='https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=900&auto=format&fit=crop&q=80'" alt="Torched Marshmallow Latte" class="w-full h-[300px] object-cover rounded-xl">
+      <!-- Menu Grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-surface border editorial-border rounded-2xl p-6 flex flex-col justify-between shadow-sm">
+          <div>
+            <div class="flex justify-between items-baseline mb-2">
+              <h3 class="font-editorial text-xl">Torched Marshmallow Latte</h3>
+              <span class="font-mono font-bold">$6.50</span>
+            </div>
+            <p class="text-[var(--text-muted)] text-xs leading-relaxed">Double espresso, micro-foamed milk & twin fire-torched marshmallows on cedar skewer.</p>
+          </div>
+          <button onclick="openCustomizer('Torched Marshmallow Latte', 6.50, 'Specialty Latte')" class="mt-6 w-full py-3 rounded-full border editorial-border text-[10px] uppercase tracking-widest font-bold hover:bg-[var(--primary)] hover:text-white transition-all">
+            Customize & Order
+          </button>
         </div>
-        <div class="rounded-2xl overflow-hidden border editorial-border bg-surface p-2">
-          <img src="./images/raspberry-danish-black-plate.jpg" onerror="this.src='https://images.unsplash.com/photo-1509440159596-0249088772ff?w=900&auto=format&fit=crop&q=80'" alt="Raspberry Danish" class="w-full h-[300px] object-cover rounded-xl">
+
+        <div class="bg-surface border editorial-border rounded-2xl p-6 flex flex-col justify-between shadow-sm">
+          <div>
+            <div class="flex justify-between items-baseline mb-2">
+              <h3 class="font-editorial text-xl">Raspberry Compote Puff Danish</h3>
+              <span class="font-mono font-bold">$4.75</span>
+            </div>
+            <p class="text-[var(--text-muted)] text-xs leading-relaxed">Flaky golden puff pastry filled with glossy ruby raspberry compote and dusted in powdered sugar.</p>
+          </div>
+          <button onclick="addToBag('Raspberry Compote Puff Danish', 4.75, 'Fresh Pastry')" class="mt-6 w-full py-3 rounded-full border editorial-border text-[10px] uppercase tracking-widest font-bold hover:bg-[var(--primary)] hover:text-white transition-all">
+            Add to Bag
+          </button>
+        </div>
+
+        <div class="bg-surface border editorial-border rounded-2xl p-6 flex flex-col justify-between shadow-sm">
+          <div>
+            <div class="flex justify-between items-baseline mb-2">
+              <h3 class="font-editorial text-xl">Ceremonial Uji Matcha Latte</h3>
+              <span class="font-mono font-bold">$6.00</span>
+            </div>
+            <p class="text-[var(--text-muted)] text-xs leading-relaxed">First-harvest shade-grown Japanese green tea whisked smooth with silky steamed milk.</p>
+          </div>
+          <button onclick="openCustomizer('Ceremonial Uji Matcha Latte', 6.00, 'Specialty Tea')" class="mt-6 w-full py-3 rounded-full border editorial-border text-[10px] uppercase tracking-widest font-bold hover:bg-[var(--primary)] hover:text-white transition-all">
+            Customize & Order
+          </button>
+        </div>
+
+        <div class="bg-surface border editorial-border rounded-2xl p-6 flex flex-col justify-between shadow-sm">
+          <div>
+            <div class="flex justify-between items-baseline mb-2">
+              <h3 class="font-editorial text-xl">Iced Marshmallow Cold Brew</h3>
+              <span class="font-mono font-bold">$6.75</span>
+            </div>
+            <p class="text-[var(--text-muted)] text-xs leading-relaxed">18-hour cold steep with house vanilla sweet cream and caramelized marshmallow skewer.</p>
+          </div>
+          <button onclick="openCustomizer('Iced Marshmallow Cold Brew', 6.75, 'Cold Brew')" class="mt-6 w-full py-3 rounded-full border editorial-border text-[10px] uppercase tracking-widest font-bold hover:bg-[var(--primary)] hover:text-white transition-all">
+            Customize & Order
+          </button>
+        </div>
+
+        <div class="bg-surface border editorial-border rounded-2xl p-6 flex flex-col justify-between shadow-sm">
+          <div>
+            <div class="flex justify-between items-baseline mb-2">
+              <h3 class="font-editorial text-xl">Classic Espresso / Cortado</h3>
+              <span class="font-mono font-bold">$3.75</span>
+            </div>
+            <p class="text-[var(--text-muted)] text-xs leading-relaxed">Precision-pulled single origin espresso shot with velvety micro-foam.</p>
+          </div>
+          <button onclick="openCustomizer('Classic Espresso / Cortado', 3.75, 'Espresso')" class="mt-6 w-full py-3 rounded-full border editorial-border text-[10px] uppercase tracking-widest font-bold hover:bg-[var(--primary)] hover:text-white transition-all">
+            Customize & Order
+          </button>
+        </div>
+
+        <div class="bg-surface border editorial-border rounded-2xl p-6 flex flex-col justify-between shadow-sm">
+          <div>
+            <div class="flex justify-between items-baseline mb-2">
+              <h3 class="font-editorial text-xl">Almond & Butter Croissant</h3>
+              <span class="font-mono font-bold">$4.25</span>
+            </div>
+            <p class="text-[var(--text-muted)] text-xs leading-relaxed">Traditional layered French butter croissant with rich almond frangipane filling.</p>
+          </div>
+          <button onclick="addToBag('Almond & Butter Croissant', 4.25, 'Fresh Pastry')" class="mt-6 w-full py-3 rounded-full border editorial-border text-[10px] uppercase tracking-widest font-bold hover:bg-[var(--primary)] hover:text-white transition-all">
+            Add to Bag
+          </button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ THE SPACE & COLOPHON ============ -->
-  <section id="space" class="py-28 border-b editorial-border">
-    <div class="max-w-7xl mx-auto px-8 grid lg:grid-cols-2 gap-16 items-center">
-      <div class="rounded-3xl overflow-hidden border editorial-border bg-surface p-3">
-        <img src="./images/marbled-espresso-counter.jpg" onerror="this.src='https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=900&auto=format&fit=crop&q=80'" alt="Marbled Espresso Counter" class="w-full h-[400px] object-cover rounded-2xl">
-      </div>
-      <div>
+  <!-- ============ SECTION 03: THE READING SALON (Atmosphere & Sensory) ============ -->
+  <section id="salon" class="py-28 border-b editorial-border">
+    <div class="max-w-7xl mx-auto px-8 grid lg:grid-cols-12 gap-16 items-center">
+      <div class="lg:col-span-6">
         <span class="text-[10px] uppercase tracking-[0.3em] font-bold text-[var(--text-muted)] block mb-2">Section 03</span>
-        <h2 class="font-editorial font-normal text-4xl sm:text-5xl mb-6">A Scandinavian-Japanese Aesthetic</h2>
-        <p class="text-[var(--text-muted)] text-sm leading-relaxed mb-6 font-light">
+        <h2 class="font-editorial font-normal text-4xl sm:text-5xl mb-6">The Reading Salon & Architecture</h2>
+        <p class="text-[var(--text-muted)] text-sm leading-relaxed mb-8 font-light">
           Designed with geometric waffle-grid ceilings, spherical globe pendants, and herringbone wood floors. Daily Edition provides an unhurried environment for browsing independent print media and enjoying meticulous coffee craft.
         </p>
-        <p class="text-xs uppercase tracking-widest font-mono text-[var(--primary)]">
-          Open Daily from 7:00 AM — 6:00 PM
-        </p>
+
+        <!-- Interactive Sensory Widget -->
+        <div class="p-6 rounded-2xl border editorial-border bg-surface flex items-center justify-between">
+          <div>
+            <h4 class="font-editorial text-lg">Sensory Atmosphere</h4>
+            <p class="text-xs text-[var(--text-muted)] mt-0.5">Toggle reading room lighting warmth & quiet ambience.</p>
+          </div>
+          <button id="sensoryToggle" class="px-5 py-2.5 rounded-full border editorial-border text-xs uppercase tracking-widest font-bold hover:bg-[var(--primary)] hover:text-white transition-all">
+            Active: Amber Glow
+          </button>
+        </div>
+      </div>
+
+      <div class="lg:col-span-6 grid grid-cols-2 gap-4">
+        <div class="rounded-2xl overflow-hidden border editorial-border bg-surface p-2 cursor-pointer" onclick="openLightbox('./images/ceiling-grid-pendant-lights.jpg', 'Ceiling Grid & Pendant Lights', 'Geometric waffle-grid ceiling with glowing spherical pendants.')">
+          <img src="./images/ceiling-grid-pendant-lights.jpg" onerror="this.src='https://images.unsplash.com/photo-1512820790803-83ca734da794?w=900&auto=format&fit=crop&q=80'" alt="Ceiling Grid" class="w-full h-[260px] object-cover rounded-xl hover:scale-105 transition-transform duration-500">
+        </div>
+        <div class="rounded-2xl overflow-hidden border editorial-border bg-surface p-2 cursor-pointer mt-8" onclick="openLightbox('./images/marbled-espresso-counter.jpg', 'Marbled Espresso Counter', 'Black and white marble espresso bar counter with La Marzocco machine.')">
+          <img src="./images/marbled-espresso-counter.jpg" onerror="this.src='https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=900&auto=format&fit=crop&q=80'" alt="Espresso Bar" class="w-full h-[260px] object-cover rounded-xl hover:scale-105 transition-transform duration-500">
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ FOOTER / COLOPHON ============ -->
-  <footer id="colophon" class="py-16 bg-surface border-t editorial-border text-xs text-[var(--text-muted)]">
+  <!-- ============ SECTION 04: VISUAL ARCHIVE (Bento Lightbox Gallery) ============ -->
+  <section id="archive" class="py-28 border-b editorial-border">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div>
+          <span class="text-[10px] uppercase tracking-[0.3em] font-bold text-[var(--text-muted)] block mb-2">Section 04</span>
+          <h2 class="font-editorial font-normal text-4xl sm:text-5xl">Visual Chronicle</h2>
+        </div>
+        <p class="text-xs uppercase tracking-widest text-[var(--text-muted)] max-w-xs">
+          Explore all authentic archival plates capturing our space, print culture, and pastries.
+        </p>
+      </div>
+
+      <!-- Bento Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="rounded-2xl overflow-hidden border editorial-border bg-surface p-2 cursor-pointer group" onclick="openLightbox('./images/daily-edition-storefront-window.jpg', 'Storefront Window Reflection', 'Exterior black metal storefront window reflecting the sky with crisp white cursive glass typography.')">
+          <img src="./images/daily-edition-storefront-window.jpg" onerror="this.src='https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=900&auto=format&fit=crop&q=80'" alt="Storefront" class="w-full h-72 object-cover rounded-xl group-hover:scale-105 transition-transform duration-500">
+          <div class="p-4"><span class="text-[10px] uppercase font-mono tracking-widest text-[var(--text-muted)]">[Plate 02] Storefront</span></div>
+        </div>
+
+        <div class="rounded-2xl overflow-hidden border editorial-border bg-surface p-2 cursor-pointer group" onclick="openLightbox('./images/green-grid-bookshelf-wall.jpg', 'Sage Green Bookshelf Wall', 'Floor-to-ceiling pale sage-green gridded bookshelf wall stacked with curated indie art magazines.')">
+          <img src="./images/green-grid-bookshelf-wall.jpg" onerror="this.src='https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=900&auto=format&fit=crop&q=80'" alt="Bookshelf Wall" class="w-full h-72 object-cover rounded-xl group-hover:scale-105 transition-transform duration-500">
+          <div class="p-4"><span class="text-[10px] uppercase font-mono tracking-widest text-[var(--text-muted)]">[Plate 03] Bookshelf Grid</span></div>
+        </div>
+
+        <div class="rounded-2xl overflow-hidden border editorial-border bg-surface p-2 cursor-pointer group" onclick="openLightbox('./images/raspberry-danish-black-plate.jpg', 'Raspberry Danish Pastry', 'Flaky square fruit danish filled with raspberry compote and powdered sugar on matte black ceramic.')">
+          <img src="./images/raspberry-danish-black-plate.jpg" onerror="this.src='https://images.unsplash.com/photo-1509440159596-0249088772ff?w=900&auto=format&fit=crop&q=80'" alt="Raspberry Danish" class="w-full h-72 object-cover rounded-xl group-hover:scale-105 transition-transform duration-500">
+          <div class="p-4"><span class="text-[10px] uppercase font-mono tracking-widest text-[var(--text-muted)]">[Plate 04] Raspberry Danish</span></div>
+        </div>
+
+        <div class="rounded-2xl overflow-hidden border editorial-border bg-surface p-2 cursor-pointer group" onclick="openLightbox('./images/window-daylight-latte-reflection.jpg', 'Window Daylight Latte', 'Matte black ceramic coffee cup on wooden table bathed in morning sunlight.')">
+          <img src="./images/window-daylight-latte-reflection.jpg" onerror="this.src='https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?w=900&auto=format&fit=crop&q=80'" alt="Window Daylight Latte" class="w-full h-72 object-cover rounded-xl group-hover:scale-105 transition-transform duration-500">
+          <div class="p-4"><span class="text-[10px] uppercase font-mono tracking-widest text-[var(--text-muted)]">[Plate 05] Morning Light</span></div>
+        </div>
+
+        <div class="rounded-2xl overflow-hidden border editorial-border bg-surface p-2 cursor-pointer group" onclick="openLightbox('./images/iced-latte-marshmallow-menu.jpg', 'Iced Latte & Menu', 'Tall chilled iced latte topped with caramelized torched marshmallows next to the Daily Edition paper menu.')">
+          <img src="./images/iced-latte-marshmallow-menu.jpg" onerror="this.src='https://images.unsplash.com/photo-1512820790803-83ca734da794?w=900&auto=format&fit=crop&q=80'" alt="Iced Latte and Menu" class="w-full h-72 object-cover rounded-xl group-hover:scale-105 transition-transform duration-500">
+          <div class="p-4"><span class="text-[10px] uppercase font-mono tracking-widest text-[var(--text-muted)]">[Plate 06] Iced Marshmallow Brew</span></div>
+        </div>
+
+        <div class="rounded-2xl overflow-hidden border editorial-border bg-surface p-2 cursor-pointer group" onclick="openLightbox('./images/magazine-wall-close-up.jpg', 'Curated Indie Publications', 'Close-up grid of indie publications including Dog, Numero, Emergence, Violet, and Ubikwist.')">
+          <img src="./images/magazine-wall-close-up.jpg" onerror="this.src='https://images.unsplash.com/photo-1544717305-2782549b5136?w=900&auto=format&fit=crop&q=80'" alt="Magazine Wall Close Up" class="w-full h-72 object-cover rounded-xl group-hover:scale-105 transition-transform duration-500">
+          <div class="p-4"><span class="text-[10px] uppercase font-mono tracking-widest text-[var(--text-muted)]">[Plate 07] Publication Grid</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 05: LOCATION & DYNAMIC HOURS ============ -->
+  <section id="visit" class="py-28 border-b editorial-border">
+    <div class="max-w-5xl mx-auto px-8 grid md:grid-cols-2 gap-16 items-center">
+      <div>
+        <span class="text-[10px] uppercase tracking-[0.3em] font-bold text-[var(--text-muted)] block mb-2">Section 05</span>
+        <h2 class="font-editorial font-normal text-4xl sm:text-5xl mb-6">Visit the Salon</h2>
+        <p class="text-[var(--text-muted)] text-sm mb-6 leading-relaxed">
+          Open daily for early morning espresso, quiet reading sessions, and fresh fruit pastries.
+        </p>
+        <div id="statusBadge" class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold border editorial-border mb-6">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>Checking hours…</span>
+        </div>
+        <div class="space-y-3 text-sm font-medium mb-8 border-t editorial-border pt-4">
+          <div class="flex justify-between"><span>Monday – Friday</span><span>7:00 AM – 6:00 PM</span></div>
+          <div class="flex justify-between"><span>Saturday & Sunday</span><span>8:00 AM – 6:00 PM</span></div>
+        </div>
+        <a href="https://maps.app.goo.gl/5yhv4GHHHB3WYnFA9" target="_blank" class="inline-block text-[11px] uppercase font-bold tracking-[0.25N em] bg-[var(--primary)] text-white px-8 py-4 rounded-full hover:opacity-90 transition-opacity">
+          Get Google Maps Directions
+        </a>
+      </div>
+      <div class="rounded-3xl overflow-hidden border editorial-border bg-surface p-3 h-[380px]">
+        <img src="./images/daily-edition-storefront-window.jpg" onerror="this.src='https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=900&auto=format&fit=crop&q=80'" alt="Storefront window" class="w-full h-full object-cover rounded-2xl">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COLOPHON FOOTER ============ -->
+  <footer class="py-16 bg-surface border-t editorial-border text-xs text-[var(--text-muted)]">
     <div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-6">
       <div>
         <span class="font-editorial text-lg text-[var(--text)] block mb-1">Daily Edition Magazine Shop & Coffee</span>
-        <p>Independent Print Culture & Specialty Coffee House.</p>
+        <p>Independent Print Culture & Specialty Coffee Salon.</p>
       </div>
       <div class="flex items-center gap-8 uppercase tracking-widest text-[10px]">
         <a href="https://maps.app.goo.gl/5yhv4GHHHB3WYnFA9" target="_blank" class="hover:text-[var(--primary)]">Directions</a>
         <a href="https://www.facebook.com/profile.php?id=100063496393100" target="_blank" class="hover:text-[var(--primary)]">Facebook</a>
-        <span>© 2026 Daily Edition</span>
+        <span>© 2026 Daily Edition. All rights reserved.</span>
       </div>
     </div>
   </footer>
 
-  <!-- ============ SCRIPT ============ -->
+  <!-- ============ MODALS & SLIDE-OUT BAG DRAWER ============ -->
+
+  <!-- Magazine Quick-View Modal -->
+  <div id="magModal" class="hidden fixed inset-0 z-50 modal-backdrop bg-black/70 items-center justify-center p-4">
+    <div class="bg-surface max-w-lg w-full rounded-3xl border editorial-border p-8 relative shadow-2xl">
+      <button onclick="closeMagModal()" class="absolute top-6 right-6 w-8 h-8 rounded-full border editorial-border flex items-center justify-center hover:bg-black/5 transition-colors">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+      <span class="text-[10px] uppercase tracking-widest font-bold text-editiongreen-600">Periodical Issue</span>
+      <h3 id="magModalTitle" class="font-editorial font-normal text-3xl mt-1 mb-3"></h3>
+      <p id="magModalDesc" class="text-[var(--text-muted)] text-sm leading-relaxed mb-6 font-light"></p>
+      <div class="flex justify-between items-center pt-6 border-t editorial-border">
+        <span id="magModalPrice" class="font-mono text-xl font-bold"></span>
+        <button id="magModalAddBtn" class="text-[11px] uppercase font-bold tracking-widest bg-[var(--primary)] text-white px-6 py-3 rounded-full hover:opacity-90">
+          Add Issue to Bag
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Coffee & Pastry Customizer Modal -->
+  <div id="customModal" class="hidden fixed inset-0 z-50 modal-backdrop bg-black/70 items-center justify-center p-4">
+    <div class="bg-surface max-w-lg w-full rounded-3xl border editorial-border p-8 relative shadow-2xl">
+      <button onclick="closeCustomizer()" class="absolute top-6 right-6 w-8 h-8 rounded-full border editorial-border flex items-center justify-center hover:bg-black/5 transition-colors">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+      <span class="text-[10px] uppercase tracking-widest font-bold text-editionamber-500">Barista Customizer</span>
+      <h3 id="customTitle" class="font-editorial font-normal text-3xl mt-1 mb-2"></h3>
+      <p id="customDesc" class="text-[var(--text-muted)] text-xs leading-relaxed mb-6 font-light"></p>
+
+      <div class="space-y-4 border-t editorial-border pt-4 mb-6">
+        <div>
+          <label class="text-xs font-bold uppercase tracking-wider text-[var(--text-muted)] block mb-2">Serving Temperature</label>
+          <div class="grid grid-cols-2 gap-2 text-xs font-semibold">
+            <label class="border editorial-border p-2.5 rounded-xl flex items-center justify-center cursor-pointer hover:bg-black/5 has-[:checked]:border-[var(--primary)] has-[:checked]:bg-[var(--primary)]/10">
+              <input type="radio" name="modalTemp" value="Hot" checked class="hidden"> 🔥 Steamed Hot
+            </label>
+            <label class="border editorial-border p-2.5 rounded-xl flex items-center justify-center cursor-pointer hover:bg-black/5 has-[:checked]:border-[var(--primary)] has-[:checked]:bg-[var(--primary)]/10">
+              <input type="radio" name="modalTemp" value="Iced" class="hidden"> 🧊 Crystal Ice
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label class="text-xs font-bold uppercase tracking-wider text-[var(--text-muted)] block mb-2">Milk Selection</label>
+          <div class="grid grid-cols-3 gap-2 text-xs font-semibold">
+            <label class="border editorial-border p-2.5 rounded-xl flex items-center justify-center cursor-pointer hover:bg-black/5 has-[:checked]:border-[var(--primary)] has-[:checked]:bg-[var(--primary)]/10">
+              <input type="radio" name="modalMilk" value="Whole Milk" checked class="hidden"> Whole Milk
+            </label>
+            <label class="border editorial-border p-2.5 rounded-xl flex items-center justify-center cursor-pointer hover:bg-black/5 has-[:checked]:border-[var(--primary)] has-[:checked]:bg-[var(--primary)]/10">
+              <input type="radio" name="modalMilk" value="Oat Milk (+$0.75)" data-cost="0.75" class="hidden"> Oat +$0.75
+            </label>
+            <label class="border editorial-border p-2.5 rounded-xl flex items-center justify-center cursor-pointer hover:bg-black/5 has-[:checked]:border-[var(--primary)] has-[:checked]:bg-[var(--primary)]/10">
+              <input type="radio" name="modalMilk" value="Almond (+$0.75)" data-cost="0.75" class="hidden"> Almond +$0.75
+            </label>
+          </div>
+        </div>
+
+        <div class="pt-1">
+          <label class="border editorial-border p-3 rounded-xl flex items-center justify-between cursor-pointer hover:bg-black/5 has-[:checked]:border-[var(--primary)] has-[:checked]:bg-[var(--primary)]/10 text-xs font-bold">
+            <div class="flex items-center gap-2">
+              <input type="checkbox" id="modalMarshmallow" class="rounded text-[var(--primary)] focus:ring-[var(--primary)]">
+              <span>Add Torched Marshmallow Skewer</span>
+            </div>
+            <span class="font-mono text-editionamber-500">+$1.00</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="flex justify-between items-center pt-6 border-t editorial-border">
+        <span id="customTotal" class="font-mono text-xl font-bold"></span>
+        <button onclick="confirmCustomizer()" class="text-[11px] uppercase font-bold tracking-widest bg-[var(--primary)] text-white px-6 py-3 rounded-full hover:opacity-90">
+          Add to Bag
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide-Out Bag Drawer -->
+  <div id="bagDrawer" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex justify-end">
+    <div class="bg-surface w-full max-w-md h-full border-l editorial-border p-8 flex flex-col justify-between shadow-2xl">
+      <div>
+        <div class="flex justify-between items-center mb-8 pb-4 border-b editorial-border">
+          <h3 class="font-editorial text-2xl">Reading Bag & Café Order</h3>
+          <button onclick="toggleBag(false)" class="w-8 h-8 rounded-full border editorial-border flex items-center justify-center hover:bg-black/5">
+            <i data-lucide="x" class="w-4 h-4"></i>
+          </button>
+        </div>
+        <div id="bagItemsList" class="space-y-4 max-h-[50vh] overflow-y-auto pr-2"></div>
+      </div>
+
+      <div class="border-t editorial-border pt-6 space-y-4">
+        <div class="flex justify-between font-editorial text-2xl">
+          <span>Total</span>
+          <span id="bagTotalPrice" class="font-mono">$0.00</span>
+        </div>
+        <button onclick="checkoutOrder()" class="w-full text-xs uppercase font-bold tracking-[0.25em] bg-[var(--primary)] text-white py-4 rounded-full hover:opacity-90">
+          Generate Pickup Ticket
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="hidden fixed inset-0 z-[80] modal-backdrop bg-black/90 items-center justify-center p-6">
+    <button onclick="closeLightbox()" class="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20">
+      <i data-lucide="x" class="w-5 h-5"></i>
+    </button>
+    <div class="max-w-4xl w-full text-center">
+      <img id="lbImg" src="" alt="" class="max-h-[70vh] mx-auto rounded-xl object-contain mb-4 border editorial-border">
+      <h3 id="lbTitle" class="font-editorial text-2xl text-white"></h3>
+      <p id="lbDesc" class="text-white/70 text-xs mt-1 max-w-lg mx-auto font-light"></p>
+    </div>
+  </div>
+
+  <!-- ============ JAVASCRIPT ============ -->
   <script>
     window.addEventListener('DOMContentLoaded', () => { if (window.lucide) lucide.createIcons(); });
 
-    // Dark Mode Toggle
+    // Theme Toggle
     const themeToggle = document.getElementById('themeToggle');
     themeToggle.addEventListener('click', () => {
       document.documentElement.classList.toggle('dark');
@@ -280,6 +555,143 @@
     if (localStorage.getItem('edition-theme') === 'dark' || (!localStorage.getItem('edition-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       document.documentElement.classList.add('dark');
     }
+
+    // Dynamic Hours Status
+    function checkHours() {
+      const now = new Date();
+      const hour = now.getHours();
+      const dot = document.getElementById('liveDot');
+      const text = document.getElementById('liveText');
+      if (hour >= 7 && hour < 18) {
+        dot.className = "w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse";
+        if(text) text.textContent = "Open Today • 7:00 AM — 6:00 PM";
+      } else {
+        dot.className = "w-1.5 h-1.5 rounded-full bg-amber-500";
+        if(text) text.textContent = "Closed for Evening • Opens 7:00 AM";
+      }
+    }
+    checkHours();
+
+    // Bag State
+    let bag = [];
+    function toggleBag(show) {
+      document.getElementById('bagDrawer').classList.toggle('hidden', !show);
+    }
+    document.getElementById('openCartDrawer').addEventListener('click', () => toggleBag(true));
+
+    function addToBag(name, price, details) {
+      bag.push({ name, price, details });
+      updateBagUI();
+      toggleBag(true);
+    }
+
+    function updateBagUI() {
+      document.getElementById('bagCount').textContent = bag.length;
+      const list = document.getElementById('bagItemsList');
+      list.innerHTML = '';
+      let total = 0;
+      bag.forEach((item, idx) => {
+        total += item.price;
+        list.innerHTML += `
+          <div class="flex justify-between items-start pb-3 border-b editorial-border text-xs">
+            <div>
+              <p class="font-bold">${item.name}</p>
+              <p class="text-[var(--text-muted)]">${item.details}</p>
+            </div>
+            <div class="flex items-center gap-3 font-mono font-bold">
+              <span>$${item.price.toFixed(2)}</span>
+              <button onclick="bag.splice(${idx},1);updateBagUI();" class="text-red-500 hover:underline">✕</button>
+            </div>
+          </div>
+        `;
+      });
+      document.getElementById('bagTotalPrice').textContent = `$${total.toFixed(2)}`;
+    }
+
+    // Magazine Modal
+    let activeMag = null;
+    function openMagModal(title, price, desc, img) {
+      activeMag = { name: title, price: parseFloat(price), details: 'Curated Print Issue' };
+      document.getElementById('magModalTitle').textContent = title;
+      document.getElementById('magModalDesc').textContent = desc;
+      document.getElementById('magModalPrice').textContent = `$${price}`;
+      document.getElementById('magModalAddBtn').onclick = () => {
+        addToBag(activeMag.name, activeMag.price, activeMag.details);
+        closeMagModal();
+      };
+      document.getElementById('magModal').classList.remove('hidden');
+      document.getElementById('magModal').classList.add('flex');
+    }
+    function closeMagModal() { document.getElementById('magModal').classList.add('hidden'); }
+
+    // Customizer Modal
+    let activeDrink = null;
+    function openCustomizer(name, price, category) {
+      activeDrink = { name, basePrice: price, category };
+      document.getElementById('customTitle').textContent = name;
+      document.getElementById('customDesc').textContent = 'Customize your roast temperature, milk preference, and add signature torched marshmallows.';
+      document.getElementById('modalMarshmallow').checked = false;
+      updateCustomTotal();
+      document.getElementById('customModal').classList.remove('hidden');
+      document.getElementById('customModal').classList.add('flex');
+    }
+    function closeCustomizer() { document.getElementById('customModal').classList.add('hidden'); }
+
+    function updateCustomTotal() {
+      if (!activeDrink) return;
+      let total = activeDrink.basePrice;
+      const milk = document.querySelector('input[name="modalMilk"]:checked');
+      if (milk && milk.dataset.cost) total += parseFloat(milk.dataset.cost);
+      if (document.getElementById('modalMarshmallow').checked) total += 1.00;
+      document.getElementById('customTotal').textContent = `$${total.toFixed(2)}`;
+    }
+    document.querySelectorAll('input[name="modalMilk"], #modalMarshmallow').forEach(el => el.addEventListener('change', updateCustomTotal));
+
+    function confirmCustomizer() {
+      if (!activeDrink) return;
+      let total = activeDrink.basePrice;
+      let specs = [];
+      const temp = document.querySelector('input[name="modalTemp"]:checked').value;
+      const milk = document.querySelector('input[name="modalMilk"]:checked').value;
+      specs.push(temp);
+      specs.push(milk);
+      if (document.querySelector('input[name="modalMilk"]:checked').dataset.cost) total += 0.75;
+      if (document.getElementById('modalMarshmallow').checked) {
+        total += 1.00;
+        specs.push('With Torched Marshmallows');
+      }
+      addToBag(activeDrink.name, total, specs.join(' • '));
+      closeCustomizer();
+    }
+
+    // Checkout
+    function checkoutOrder() {
+      if (bag.length === 0) { alert('Your bag is currently empty.'); return; }
+      const code = 'EDITION-' + Math.floor(100 + Math.random() * 900);
+      alert(`Pickup Ticket Generated!\nCode: #${code}\nPlease present at the marble counter.`);
+      bag = [];
+      updateBagUI();
+      toggleBag(false);
+    }
+
+    // Lightbox
+    function openLightbox(src, title, desc) {
+      document.getElementById('lbImg').src = src;
+      document.getElementById('lbTitle').textContent = title;
+      document.getElementById('lbDesc').textContent = desc;
+      document.getElementById('lightbox').classList.remove('hidden');
+      document.getElementById('lightbox').classList.add('flex');
+    }
+    function closeLightbox() { document.getElementById('lightbox').classList.add('hidden'); }
+
+    // Sensory Toggle
+    const sensoryBtn = document.getElementById('sensoryToggle');
+    let sensoryState = 0;
+    const states = ['Active: Amber Glow', 'Active: Lo-Fi Vinyl', 'Active: Pure Silence'];
+    sensoryBtn.addEventListener('click', () => {
+      sensoryState = (sensoryState + 1) % states.length;
+      sensoryBtn.textContent = states[sensoryState];
+    });
   </script>
 </body>
 </html>
