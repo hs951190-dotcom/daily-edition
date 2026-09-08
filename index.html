@@ -53,6 +53,7 @@
       --text: #F5F7F5;
       --text-muted: #9BA89E;
     }
+    * { box-sizing: border-box; }
     body {
       background-color: var(--bg);
       color: var(--text);
@@ -63,6 +64,12 @@
     .font-editorial { font-family: 'Playfair Display', 'Fraunces', serif; }
     ::selection { background: var(--primary); color: white; }
     .editorial-border { border-color: var(--border); }
+    
+    /* Subtle blur backdrop utility for popups */
+    .modal-backdrop-blur {
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
   </style>
 </head>
 <body class="antialiased">
@@ -124,7 +131,7 @@
 
       <div class="lg:col-span-5 flex flex-col items-end">
         <div class="w-full max-w-md rounded-2xl overflow-hidden border editorial-border bg-surface p-3 shadow-sm group cursor-pointer" onclick="openLightbox('./images/torched-marshmallow-latte.jpg', 'Torched Marshmallow Latte', 'Specialty latte with wood-skewered fire-torched marshmallows.')">
-          <img src="./images/torched-marshmallow-latte.jpg" onerror="this.src='https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=900&auto=format&fit=crop&q=80'" alt="Torched Marshmallow Latte" class="w-full h-[360px] object-cover rounded-xl group-hover:scale-105 transition-transform duration-700">
+          <img src="./images/torched-marshmallow-latte.jpg" onerror="this.src='https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=900&auto=format&fit=crop&q=80'" alt="Torched Marshmallow Latte" class="w-full h-[360px] object-cover rounded-xl grayscale group-hover:grayscale-0 transition-all duration-700">
           <div class="pt-4 px-2 flex justify-between items-center text-xs font-mono uppercase tracking-widest text-[var(--text-muted)]">
             <span>[Plate 01] Signature Pour</span>
             <span class="text-[var(--primary)] font-bold">$6.50</span>
@@ -392,17 +399,17 @@
         <span class="text-[10px] uppercase tracking-[0.3em] font-bold text-[var(--text-muted)] block mb-2">Section 05</span>
         <h2 class="font-editorial font-normal text-4xl sm:text-5xl mb-6">Visit the Salon</h2>
         <p class="text-[var(--text-muted)] text-sm mb-6 leading-relaxed">
-          Open daily for early morning espresso, quiet reading sessions, and fresh fruit pastries.
+          Open daily for early morning espresso, quiet reading sessions, and fresh pastries.
         </p>
-        <div id="statusBadge" class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold border editorial-border mb-6">
+        <div id="statusBadge" class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold border editorial-border mb-6 bg-surface">
           <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span>Checking hours…</span>
+          <span id="liveText">Checking hours…</span>
         </div>
         <div class="space-y-3 text-sm font-medium mb-8 border-t editorial-border pt-4">
           <div class="flex justify-between"><span>Monday – Friday</span><span>7:00 AM – 6:00 PM</span></div>
           <div class="flex justify-between"><span>Saturday & Sunday</span><span>8:00 AM – 6:00 PM</span></div>
         </div>
-        <a href="https://maps.app.goo.gl/5yhv4GHHHB3WYnFA9" target="_blank" class="inline-block text-[11px] uppercase font-bold tracking-[0.25N em] bg-[var(--primary)] text-white px-8 py-4 rounded-full hover:opacity-90 transition-opacity">
+        <a href="https://maps.app.goo.gl/5yhv4GHHHB3WYnFA9" target="_blank" class="inline-block text-[11px] uppercase font-bold tracking-[0.25em] bg-[var(--primary)] text-white px-8 py-4 rounded-full hover:opacity-90 transition-opacity">
           Get Google Maps Directions
         </a>
       </div>
@@ -427,10 +434,10 @@
     </div>
   </footer>
 
-  <!-- ============ MODALS & SLIDE-OUT BAG DRAWER ============ -->
+  <!-- ============ MODALS & SLIDE-OUT BAG DRAWER (WITH BLUR BACKDROP) ============ -->
 
   <!-- Magazine Quick-View Modal -->
-  <div id="magModal" class="hidden fixed inset-0 z-50 modal-backdrop bg-black/70 items-center justify-center p-4">
+  <div id="magModal" class="hidden fixed inset-0 z-50 modal-backdrop-blur bg-black/60 items-center justify-center p-4">
     <div class="bg-surface max-w-lg w-full rounded-3xl border editorial-border p-8 relative shadow-2xl">
       <button onclick="closeMagModal()" class="absolute top-6 right-6 w-8 h-8 rounded-full border editorial-border flex items-center justify-center hover:bg-black/5 transition-colors">
         <i data-lucide="x" class="w-4 h-4"></i>
@@ -448,7 +455,7 @@
   </div>
 
   <!-- Coffee & Pastry Customizer Modal -->
-  <div id="customModal" class="hidden fixed inset-0 z-50 modal-backdrop bg-black/70 items-center justify-center p-4">
+  <div id="customModal" class="hidden fixed inset-0 z-50 modal-backdrop-blur bg-black/60 items-center justify-center p-4">
     <div class="bg-surface max-w-lg w-full rounded-3xl border editorial-border p-8 relative shadow-2xl">
       <button onclick="closeCustomizer()" class="absolute top-6 right-6 w-8 h-8 rounded-full border editorial-border flex items-center justify-center hover:bg-black/5 transition-colors">
         <i data-lucide="x" class="w-4 h-4"></i>
@@ -506,7 +513,7 @@
   </div>
 
   <!-- Slide-Out Bag Drawer -->
-  <div id="bagDrawer" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex justify-end">
+  <div id="bagDrawer" class="hidden fixed inset-0 z-50 modal-backdrop-blur bg-black/60 flex justify-end">
     <div class="bg-surface w-full max-w-md h-full border-l editorial-border p-8 flex flex-col justify-between shadow-2xl">
       <div>
         <div class="flex justify-between items-center mb-8 pb-4 border-b editorial-border">
@@ -531,18 +538,18 @@
   </div>
 
   <!-- Lightbox Modal -->
-  <div id="lightbox" class="hidden fixed inset-0 z-[80] modal-backdrop bg-black/90 items-center justify-center p-6">
+  <div id="lightbox" class="hidden fixed inset-0 z-[80] modal-backdrop-blur bg-black/80 items-center justify-center p-6">
     <button onclick="closeLightbox()" class="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20">
       <i data-lucide="x" class="w-5 h-5"></i>
     </button>
     <div class="max-w-4xl w-full text-center">
-      <img id="lbImg" src="" alt="" class="max-h-[70vh] mx-auto rounded-xl object-contain mb-4 border editorial-border">
+      <img id="lbImg" src="" alt="" class="max-h-[70vh] mx-auto rounded-xl object-contain mb-4 border editorial-border shadow-2xl">
       <h3 id="lbTitle" class="font-editorial text-2xl text-white"></h3>
       <p id="lbDesc" class="text-white/70 text-xs mt-1 max-w-lg mx-auto font-light"></p>
     </div>
   </div>
 
-  <!-- ============ JAVASCRIPT ============ -->
+  <!-- ============ SCRIPT ============ -->
   <script>
     window.addEventListener('DOMContentLoaded', () => { if (window.lucide) lucide.createIcons(); });
 
